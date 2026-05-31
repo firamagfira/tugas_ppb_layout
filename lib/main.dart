@@ -1,519 +1,165 @@
-// import 'package:flutter/material.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: HomePage(),
-//     );
-
-//   }
-// }
-
-// class HomePage extends StatelessWidget {
-
-//   @override
-//   Widget build(BuildContext context){
-
-//     return Scaffold(
-
-//       appBar: AppBar(
-//         centerTitle: true,
-//         title: Text("PPB"),
-//       ),
-
-//       body: Center(
-
-//         child: Column(
-
-//           mainAxisAlignment: MainAxisAlignment.center,
-
-//           children: [
-
-//             Row(
-
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-//               children: [
-
-//                 ElevatedButton(
-
-//                   onPressed:(){
-
-//                     Navigator.push(
-
-//                       context,
-
-//                       MaterialPageRoute(
-
-//                         builder: (context)=> DetailPage(),
-
-//                       ),
-
-//                     );
-
-//                   },
-
-//                   child: Text("Detail 1"),
-
-//                 ),
-
-//                 ElevatedButton(
-
-//                   onPressed:(){
-
-//                     Navigator.push(
-
-//                       context,
-
-//                       MaterialPageRoute(
-
-//                         builder: (context)=> BintangPage(),
-
-//                       ),
-
-//                     );
-
-//                   },
-
-//                   child: Text("Detail 2"),
-
-//                 ),
-
-//               ],
-
-//             ),
-
-//             SizedBox(height:40),
-//             Column(
-//               children: [
-//                 Text(
-//                   "Maghfirah",
-//                   style: TextStyle(fontSize:20, fontWeight: FontWeight.bold),
-//                 ),
-
-//                 SizedBox(height:10),
-
-//                 Text(
-//                   "NIM: 60200124112",
-//                   style: TextStyle(fontSize:20),
-//                 ),
-//               ],
-//             ),
-
-//           ],
-
-//         ),
-
-//       ),
-
-//     );
-
-//   }
-
-// }
-
-// class DetailPage extends StatelessWidget{
-
-//   @override
-//   Widget build(BuildContext context){
-
-//     return Scaffold(
-
-//       appBar: AppBar(
-//         title: Text("Isi Laporan"),
-//       ),
-
-//       body: Padding(
-
-//         padding: EdgeInsets.all(20),
-
-//         child: Text(
-
-// '''
-// Judul laporan:
-
-// Implementasi Form dan Navigasi pada Flutter.
-
-// Penjelasan:
-// Flutter menggunakan widget Form untuk mengatur input data
-// pengguna, serta Navigator untuk melakukan perpindahan antar
-// halaman. Form digunakan untuk validasi input sebelum data
-// dikirim, sedangkan navigasi digunakan untuk mengatur alur
-// perpindahan layar dalam aplikasi agar lebih terstruktur.
-// ''',
-
-//         style: TextStyle(fontSize:20),
-
-//         ),
-
-//       ),
-
-//     );
-
-//   }
-
-// }
-// class BintangPage extends StatelessWidget{
-
-//   @override
-//   Widget build(BuildContext context){
-
-//     return Scaffold(
-
-//       appBar: AppBar(
-//         title: Text("Bintang"),
-//       ),
-
-//       body: Center(
-
-//         child: Text(
-//           "★★★",
-//           style: TextStyle(fontSize:50),
-//         ),
-
-//       ),
-
-//     );
-
-//   }
-
-// }
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: TravelPage(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
+class TravelPage extends StatelessWidget {
+  const TravelPage({super.key});
 
-  Widget menuItem(
-    BuildContext context,
-    IconData icon,
-    String text,
-    Widget page,
-  ) {
-    return GestureDetector(
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 150, 62, 62),
 
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => page,
-          ),
-        );
-      },
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
 
-      child: Column(
-        children: [
+              // HEADER
+              Container(
+                padding: const EdgeInsets.all(15),
+                color: Colors.amber,
+                child: Row(
+                  children: [
+                    const CircleAvatar(
+                      radius: 25,
+                      child: Icon(Icons.person),
+                    ),
 
-          CircleAvatar(
-            radius: 28,
-            backgroundColor: Colors.blue.shade100,
+                    const SizedBox(width: 10),
 
-            child: Icon(
-              icon,
-              size: 30,
-              color: Colors.blue,
-            ),
-          ),
+                    const Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "MAGHFIRAH",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            "maghfirah@gmail.com",
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
+                    ),
 
-          SizedBox(height: 8),
-
-          Text(
-            text,
-            style: TextStyle(fontSize: 14),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget infoCard(
-    BuildContext context,
-    IconData icon,
-    String title,
-    String subtitle,
-  ) {
-    return GestureDetector(
-
-      onTap: () {
-        showDialog(
-          context: context,
-
-          builder: (context) {
-            return AlertDialog(
-
-              title: Text(title),
-
-              content: Text(subtitle),
-
-              actions: [
-
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-
-                  child: Text("OK"),
+                    const Column(
+                      children: [
+                        Text("POINT"),
+                        Text(
+                          "825",
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            );
-          },
-        );
-      },
+              ),
 
-      child: Card(
-        elevation: 5,
+              // BANNER
+              Container(
+                height: 180,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.indigo,
+                      Colors.blue,
+                    ],
+                  ),
+                ),
+                child: const Center(
+                  child: Text(
+                    "GET 20% OFF",
+                    style: TextStyle(
+                      color: Colors.yellow,
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
 
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+              const SizedBox(height: 20),
+
+              // BARIS 1
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  menu(Icons.flight, "Flights"),
+                  menu(Icons.location_on, "Destinations"),
+                  menu(Icons.hotel, "Hotels"),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+
+              // BARIS 2
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  menu(Icons.directions_car, "Car Rentals"),
+                  menu(Icons.train, "Trains"),
+                  menu(Icons.restaurant, "Culinary"),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+
+              // BARIS 3
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  menu(Icons.security, "Insurance"),
+                  menu(Icons.discount, "Coupons"),
+                  menu(Icons.event, "Events"),
+                ],
+              ),
+            ],
+          ),
         ),
+      ),
+    );
+  }
 
-        child: ListTile(
-
-          leading: Icon(
+  Widget menu(IconData icon, String title) {
+    return Column(
+      children: [
+        CircleAvatar(
+          radius: 28,
+          backgroundColor: Colors.blue.shade100,
+          child: Icon(
             icon,
+            size: 30,
             color: Colors.blue,
-            size: 35,
           ),
-
-          title: Text(
-            title,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-
-          subtitle: Text(subtitle),
         ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-
-      appBar: AppBar(
-        title: Text("Tugas Layout PPB"),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
-      ),
-
-      body: SingleChildScrollView(
-
-        child: Column(
-          children: [
-
-            SizedBox(height: 30),
-
-            Icon(
-              Icons.person,
-              size: 100,
-              color: Colors.blue,
-            ),
-
-            SizedBox(height: 15),
-
-            Text(
-              "Maghfirah",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            Text(
-              "Teknik Informatika",
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-              ),
-            ),
-
-            SizedBox(height: 25),
-
-            Padding(
-              padding: EdgeInsets.all(12),
-
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                children: [
-
-                  menuItem(
-                    context,
-                    Icons.home,
-                    "Home",
-                    HomePageDetail(),
-                  ),
-
-                  menuItem(
-                    context,
-                    Icons.person,
-                    "Profile",
-                    ProfilePage(),
-                  ),
-
-                  menuItem(
-                    context,
-                    Icons.settings,
-                    "Setting",
-                    SettingPage(),
-                  ),
-                ],
-              ),
-            ),
-
-            SizedBox(height: 20),
-
-            Padding(
-              padding: EdgeInsets.all(12),
-
-              child: Column(
-                children: [
-
-                  infoCard(
-                    context,
-                    Icons.school,
-                    "Universitas",
-                    "UIN Alauddin Makassar",
-                  ),
-
-                  SizedBox(height: 15),
-
-                  infoCard(
-                    context,
-                    Icons.code,
-                    "Mata Kuliah",
-                    "Pemrograman Perangkat Bergerak",
-                  ),
-
-                  SizedBox(height: 15),
-
-                  infoCard(
-                    context,
-                    Icons.groups,
-                    "Teamwork",
-                    "Belajar Flutter Layout",
-                  ),
-                ],
-              ),
-            ),
-          ],
+        const SizedBox(height: 5),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 12),
         ),
-      ),
-    );
-  }
-}
-
-class HomePageDetail extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-
-      appBar: AppBar(
-        title: Text("Home"),
-        backgroundColor: Colors.blue,
-      ),
-
-      body: Center(
-        child: Text(
-          "Selamat Datang di Aplikasi PPB",
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-
-      appBar: AppBar(
-        title: Text("Profile"),
-        backgroundColor: Colors.blue,
-      ),
-
-      body: Padding(
-        padding: EdgeInsets.all(20),
-
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-
-          children: [
-
-            Text(
-              "Nama : Maghfirah",
-              style: TextStyle(fontSize: 18),
-            ),
-
-            SizedBox(height: 10),
-
-            Text(
-              "NIM : 60200124112",
-              style: TextStyle(fontSize: 18),
-            ),
-
-            SizedBox(height: 10),
-
-            Text(
-              "Jurusan : Teknik Informatika",
-              style: TextStyle(fontSize: 18),
-            ),
-
-            SizedBox(height: 10),
-
-            Text(
-              "Fakultas : Sains dan Teknologi",
-              style: TextStyle(fontSize: 18),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class SettingPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-
-      appBar: AppBar(
-        title: Text("Setting"),
-        backgroundColor: Colors.blue,
-      ),
-
-      body: Center(
-        child: Text(
-          "Halaman Pengaturan",
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      ],
     );
   }
 }
